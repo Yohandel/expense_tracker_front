@@ -8,40 +8,42 @@ import Navigations from './components/Navigation/Navigations.js';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Incomes from './components/Incomes/Incomes.jsx';
 import Expenses from './components/Expenses/Expenses.jsx';
+import { useGlobalContext } from './context/globalContext.jsx';
 
 
 export function App() {
   const [active, setactive] = useState(1)
 
+
   const orbMemo = useMemo(() => {
-    return <Orb/>
+    return <Orb />
   }, [])
 
-  const displayData = () =>{
+  const displayData = () => {
     switch (active) {
       case 1:
-        return <Dashboard/>
+        return <Dashboard />
       case 2:
-        return <Dashboard/>
+        return <Dashboard />
       case 3:
-        return <Incomes/>
+        return <Incomes />
       case 4:
-        return <Expenses/>
-    
+        return <Expenses />
+
       default:
-        return <Dashboard/>
+        return <Dashboard />
     }
   }
 
   return (
     <AppStyled bg={bg} >
       {orbMemo}
-     <MainLayout>
-      <Navigations active={active} setActive ={setactive}/>
-      <main>
-        {displayData()}
-      </main>
-     </MainLayout>
+      <MainLayout>
+        <Navigations active={active} setActive={setactive} />
+        <main>
+          {displayData()}
+        </main>
+      </MainLayout>
     </AppStyled>
   )
 

@@ -7,7 +7,7 @@ const Expenses = () => {
 
         <constExpensesStyled>
             <InnerLayout>
-                Expenses
+                <h1>Expenses</h1>
             </InnerLayout>
         </constExpensesStyled>
     )
