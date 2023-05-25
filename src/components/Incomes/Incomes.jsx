@@ -7,7 +7,7 @@ import { useEffect } from 'preact/hooks'
 import IncomeItem from '../IncomeItem/IncomeItem'
 
 const Incomes = () => {
-    const { getIncomes, incomes, setIncomes } = useGlobalContext()
+    const { getIncomes, incomes, deleteIncome } = useGlobalContext()
 
     useEffect(() => {
         getIncomes()
@@ -34,6 +34,7 @@ const Incomes = () => {
                                 date={date}
                                 category={category}
                                 indicatorColor='var(--color-green)'
+                                deleteItem={deleteIncome}
                             />
                         })}
                     </div>

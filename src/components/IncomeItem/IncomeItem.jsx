@@ -1,6 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons'
+import {
+    bitcoin, book, calender,
+    card, circle, clothing,
+    comment, dollar, food,
+    freelance, medical, money,
+    piggy, stocks, takeaway,
+    trash, tv, users, yt
+} from '../../utils/Icons'
 import Button from '../Button/Button'
 
 const IncomeItem = ({
@@ -17,23 +24,23 @@ const IncomeItem = ({
 
     const categoryIcon = () => {
         switch (category) {
-            case 'salary':return money;
+            case 'salary': return money;
 
-            case 'freelancing':return freelance;
+            case 'freelancing': return freelance;
 
-            case 'investments':return stocks;
+            case 'investments': return stocks;
 
-            case 'stocks':return users;
+            case 'stocks': return users;
 
-            case 'bitcoin':return bitcoin;
+            case 'bitcoin': return bitcoin;
 
-            case 'bank':return card;
+            case 'bank': return card;
 
-            case 'youtube':return yt;
+            case 'youtube': return yt;
 
-            case 'other':return piggy;
+            case 'other': return piggy;
 
-            default:return '';
+            default: return '';
         }
     }
 
@@ -80,7 +87,7 @@ const IncomeItem = ({
                             color={'#fff'}
                             iColor={'#fff'}
                             hcolor={'var(--colorg- reen)'}
-
+                            onClick={() => deleteItem(id)}
                         />
                     </div>
                 </div>
