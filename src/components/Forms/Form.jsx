@@ -26,6 +26,13 @@ const Form = () => {
     const handleSubmit = e => {
         e.preventDefault()
         addIncome(inputState)
+        setInputState({
+            title: '',
+            amount: '',
+            date: '',
+            category: '',
+            description: ''
+        })
     }
 
     return (
@@ -51,14 +58,14 @@ const Form = () => {
                 />
             </div>
             <div className="input-control">
-                <textarea 
-                name="description" 
-                value={description} 
-                placeholder='Add A Description' 
-                id="description" 
-                cols="132" 
-                rows="4" 
-                onChange={handleInput('description')}></textarea>
+                <textarea
+                    name="description"
+                    value={description}
+                    placeholder='Add A Description'
+                    id="description"
+                    cols="32"
+                    rows="4"
+                    onChange={handleInput('description')}></textarea>
             </div>
             <div className="input-control">
                 <label>Date</label>
@@ -87,12 +94,12 @@ const Form = () => {
             </div>
             <div className="submit-btn">
                 <Button
-                name={'Add Income'}
-                icon={plus}
-                bPad={'.8rem 1.6rem'}
-                bRad={'30px'}
-                bg={'var(--color-accent'}
-                color={'#fff'}
+                    name={'Add Income'}
+                    icon={plus}
+                    bPad={'.8rem 1.6rem'}
+                    bRad={'30px'}
+                    bg={'var(--color-accent'}
+                    color={'#fff'}
                 />
             </div>
         </FormStyled>
@@ -126,7 +133,7 @@ const FormStyled = styled.form`
     }
     .selects{
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         select{
             color: rgba(34, 34, 96, 0.4);
             &:focus, &:active{

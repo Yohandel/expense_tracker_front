@@ -35,12 +35,22 @@ export const GlobalProvider = ({ children }) => {
         setIncomes(incomes.filter((income) => income._id !== id))
     }
 
+    const totalIncome = () => {
+        let totaL = 0;
+        incomes.forEach(income => {
+            totaL += income.amount
+        });
+
+        return totaL
+    }
+
     return (
         <GlobalContext.Provider value={{
             addIncome,
             getIncomes,
             incomes,
             deleteIncome,
+            totalIncome
         }}>
             {children}
         </GlobalContext.Provider>

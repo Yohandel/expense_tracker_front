@@ -5,9 +5,11 @@ import { useGlobalContext } from '../../context/globalContext'
 import Form from '../Forms/Form'
 import { useEffect } from 'preact/hooks'
 import IncomeItem from '../IncomeItem/IncomeItem'
+import { dollar } from '../../utils/Icons'
+import './incomes.css'
 
 const Incomes = () => {
-    const { getIncomes, incomes, deleteIncome } = useGlobalContext()
+    const { getIncomes, incomes, deleteIncome, totalIncome } = useGlobalContext()
 
     useEffect(() => {
         getIncomes()
@@ -15,9 +17,10 @@ const Incomes = () => {
 
     return (
 
-        <constIncomesStyled>
+        <IncomesStyled>
             <InnerLayout>
                 <h1>Incomes</h1>
+                <h2 className="total-income">Total Incomes: <span>{dollar}{totalIncome()}</span> </h2>
                 <div className="income-content">
                     <div className="form-container">
                         <Form />
@@ -40,13 +43,13 @@ const Incomes = () => {
                     </div>
                 </div>
             </InnerLayout>
-        </constIncomesStyled>
+        </IncomesStyled>
     )
 }
 
 const IncomesStyled = styled.div`
     display: flex;
-    overflow: auto;
+    overflow: hidden;
     .total-income{
         display: flex;
         justify-content: center;
@@ -67,10 +70,15 @@ const IncomesStyled = styled.div`
     }
     .income-content{
         display: flex;
+        
         gap: 2rem;
         .incomes{
             flex: 1;
+            height: 65vh;
+            overflow-y: auto;
+            
         }
+        
     }
 `
 

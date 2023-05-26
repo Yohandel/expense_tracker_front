@@ -103,6 +103,7 @@ const IncomeItemStyled = styled.div`
     border-radius: 20px;
     padding: 1rem;
     margin-bottom: 1rem;
+    margin-top: 1rem;
     display: flex;
     align-items: center;
     gap: 1rem;
