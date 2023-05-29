@@ -11,7 +11,7 @@ import {
 import Button from '../Button/Button'
 import { dateFormat } from '../../utils/dateFormat'
 
-const IncomeItem = ({
+const ExpenseItem = ({
     id,
     title,
     amount,
@@ -23,6 +23,7 @@ const IncomeItem = ({
     type
 }) => {
 
+    
     const categoryIcon = () => {
         switch (category) {
             case 'salary': return money;
@@ -46,10 +47,32 @@ const IncomeItem = ({
     }
 
 
+    const expenseCatIcon = () => {
+        switch (category) {
+            case 'education': return book;
+
+            case 'groceries': return food;
+
+            case 'health': return medical;
+
+            case 'subscription': return tv;
+
+            case 'takeaway': return takeaway;
+
+            case 'clothing': return clothing;
+
+            case 'traveling': return freelance;
+
+            case 'other': return circle;
+
+            default: return '';
+        }
+    }
+
     return (
-        <IncomeItemStyled indicator={indicatorColor}>
+        <ExpenseItemStyled indicator={indicatorColor}>
             <div className="icon">
-                {categoryIcon()}
+            {type === 'expense' ? expenseCatIcon() : categoryIcon()}    
             </div>
             <div className="content">
                 <h5>{title}</h5>
@@ -72,11 +95,11 @@ const IncomeItem = ({
                     </div>
                 </div>
             </div>
-        </IncomeItemStyled>
+        </ExpenseItemStyled>
     )
 }
 
-const IncomeItemStyled = styled.div`
+const ExpenseItemStyled = styled.div`
     background: #FCF6F9;
     border: 2px solid #FFFFFF;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -144,4 +167,4 @@ const IncomeItemStyled = styled.div`
 `;
 
 
-export default IncomeItem
+export default ExpenseItem
