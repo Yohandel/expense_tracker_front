@@ -6,7 +6,7 @@ import {
     comment, dollar, food,
     freelance, medical, money,
     piggy, stocks, takeaway,
-    trash, tv, users, yt
+    trash, traveling, tv, users, yt
 } from '../../utils/Icons'
 import Button from '../Button/Button'
 import { dateFormat } from '../../utils/dateFormat'
@@ -61,7 +61,7 @@ const ExpenseItem = ({
 
             case 'clothing': return clothing;
 
-            case 'traveling': return freelance;
+            case 'traveling': return traveling;
 
             case 'other': return circle;
 

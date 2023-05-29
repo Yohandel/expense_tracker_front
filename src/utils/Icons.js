@@ -8,6 +8,7 @@ export const trend = <i className="fa-solid fa-money-bill-trend-up"></i>
 export const expenses = <i className="fa-solid fa-money-bill-transfer"></i>
 export const money = <i className="fa-solid fa-money-bill"></i>
 export const freelance = <i className ="fa-solid fa-earth-americas"></i>
+export const traveling = <i class="fa-solid fa-plane-up"></i>
 export const stocks = <i className="fa-solid fa-arrow-trend-up"></i>
 export const bitcoin = <i className="fa-brands fa-bitcoin"></i>
 export const piggy = <i className="fa-solid fa-piggy-bank"></i>
