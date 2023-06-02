@@ -16,20 +16,22 @@ const Dashboard = () => {
                         <Charts />
                         <div className="amount-con">
                             <div className="income">
-                                <h2>Total Income</h2>
+                                <h3>Total Income</h3>
                                 <p>
                                     {dollar} {totalIncome()}
                                 </p>
                             </div>
                             <div className="expense">
-                                <h2>Total Expense</h2>
+                                <h3>Total Expense</h3>
                                 <p>
                                     {dollar} {totalExpense()}
                                 </p>
                             </div>
                             <div className="balance">
-                                <h2>Total Balance</h2>
-                                {dollar} {totalBalance()}
+                                <h3>Total Balance</h3>
+                                <p>
+                                    {dollar} {totalBalance()}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -53,12 +55,10 @@ const DashboardStyled = styled.div`
             height: 400px;
             .amount-con{
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 gap: 2rem;
                 margin-top: 2rem;
-                .income, .expense{
-                    grid-column: span 2;
-                }
+           
                 .income, .expense, .balance{
                     background: #FCF6F9;
                     border: 2px solid #FFFFFF;
@@ -66,20 +66,26 @@ const DashboardStyled = styled.div`
                     border-radius: 20px;
                     padding: 1rem;
                     p{
-                        font-size: 3.5rem;
+                        font-size: 2.3rem;
                         font-weight: 700;
                     }
                 }
-                .balance{
-                    grid-column: 2 / 4;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
+
+                .expense{
                     p{
-                        color: var(--color-green);
-                        opacity: 0.6;
-                        font-size: 4.5rem;
+                        color: #df2b2b;
+                    }
+                }
+                .income{
+                    p{
+                        color: #288828;
+                    }
+                }
+                .balance{
+                    p{
+                        color: #288828;
+                        
+                        font-size: 2.3rem;
                     }
                 }
             }
