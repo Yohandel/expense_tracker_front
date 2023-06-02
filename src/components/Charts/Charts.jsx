@@ -64,9 +64,8 @@ const Charts = () => {
                     const { amount } = expense
                     return amount
                 })],
-                backgroundColor: 'rgba(252, 246, 249, 0.78)',
-                tension: .2,
-                borderColor: 'red',
+                backgroundColor: 'red',
+                tension: .2
             },
             {
                 label: 'Incomes',
@@ -74,9 +73,8 @@ const Charts = () => {
                     const { amount } = income
                     return amount
                 })],
-                backgroundColor: 'rgba(252, 246, 249, 0.78)',
-                tension: .2,
-                borderColor: 'green',
+                backgroundColor: 'green',
+                tension: .2
             },
 
         ]
