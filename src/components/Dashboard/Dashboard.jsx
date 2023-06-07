@@ -4,16 +4,16 @@ import { InnerLayout } from '../../styles/Layout'
 import Charts from '../Charts/Charts'
 import { dollar } from '../../utils/Icons'
 import { useGlobalContext } from '../../context/globalContext'
+import History from '../History/History'
 
 const Dashboard = () => {
-    const { totalIncome, totalExpense, totalBalance } = useGlobalContext()
+    const { totalIncome, totalExpense, totalBalance, incomes, expenses } = useGlobalContext()
     return (
         <DashboardStyled>
             <InnerLayout>
                 <h1>All Transactions</h1>
                 <div className="stats-con">
                     <div className="chart-con">
-                        <Charts />
                         <div className="amount-con">
                             <div className="income">
                                 <h3>Total Income</h3>
@@ -34,9 +34,32 @@ const Dashboard = () => {
                                 </p>
                             </div>
                         </div>
+                        <Charts />
                     </div>
                     <div className="history-con">
-
+                        <History />
+                        <h2 className="salary-title">
+                            Min  <span>Incomes</span> Max
+                        </h2>
+                        <div className="salary-item">
+                            <p>
+                                {totalIncome() === 0 ? 0 : Math.min(...incomes.map(item => item.amount))}
+                            </p>
+                            <p>
+                                {totalIncome() === 0 ? 0 : Math.max(...incomes.map(item => item.amount))}
+                            </p>
+                        </div>
+                        <h2 className="salary-title">
+                            Min  <span>Expenses</span> Max
+                        </h2>
+                        <div className="salary-item">
+                            <p>
+                                {totalExpense() === 0 ? 0 : Math.min(...expenses.map(item => item.amount))}
+                            </p>
+                            <p>
+                                {totalExpense() === 0 ? 0 : Math.max(...expenses.map(item => item.amount))}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </InnerLayout>
@@ -57,7 +80,8 @@ const DashboardStyled = styled.div`
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 2rem;
-                margin-top: 2rem;
+                margin-top: 0.5rem;
+                margin-bottom: 2rem;
            
                 .income, .expense, .balance{
                     background: #FCF6F9;
@@ -66,7 +90,7 @@ const DashboardStyled = styled.div`
                     border-radius: 20px;
                     padding: 1rem;
                     p{
-                        font-size: 2.3rem;
+                        font-size: 1.8rem;
                         font-weight: 700;
                     }
                 }
@@ -85,7 +109,7 @@ const DashboardStyled = styled.div`
                     p{
                         color: #288828;
                         
-                        font-size: 2.3rem;
+                        font-size: 1.8rem;
                     }
                 }
             }
@@ -94,12 +118,14 @@ const DashboardStyled = styled.div`
             grid-column: 4 / -1;
             h2{
                 margin: 1rem 0;
+                margin-top: 0;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
             }
             .salary-title{
                 font-size: 1.2rem;
+                margin-top: 0.6rem;
                 span{
                     font-size: 1.8rem;
                 }
