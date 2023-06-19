@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import avatar from '../../Images/avatar.png';
 import { menuItems } from '../../utils/menuItems';
 import { signout } from '../../utils/Icons';
-import { useState } from 'preact/hooks';
+import { Link } from "react-router-dom";
 
 const Navigations = ({ active, setActive }) => {
 
@@ -31,7 +31,7 @@ const Navigations = ({ active, setActive }) => {
             </ul>
             <div className="bottom-nav">
                 <li>
-                    {signout} Sign Out
+                   <Link></Link> 
                 </li>
             </div>
         </NavStyled>
