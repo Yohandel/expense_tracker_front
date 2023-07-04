@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import avatar from '../../Images/avatar.png';
 import { menuItems } from '../../utils/menuItems';
-import { signout } from '../../utils/Icons';
+import { home, signout } from '../../utils/Icons';
 import { Link } from "react-router-dom";
+import Login from '../login/login';
+
 
 const Navigations = ({ active, setActive }) => {
 
@@ -19,20 +21,29 @@ const Navigations = ({ active, setActive }) => {
 
             <ul className="menu-items">
                 {menuItems.map((item) => {
-                    return <li
-                        key={item.id}
-                        onClick={() => setActive(item.id)}
-                        className={active === item.id ? 'active' : ''}
-                    >
-                        {item.icon}
-                        <span>{item.title}</span>
-                    </li>
+                    return (
+                        <Link to={item.linkf}>
+                            <li
+                                key={item.id}
+
+                                className={active === item.id ? 'active' : ''}
+                            >
+                                {item.icon}
+                                <span>{item.title}</span>
+                            </li>
+                        </Link>
+                    )
                 })}
+
+
+
             </ul>
             <div className="bottom-nav">
-                <li>
-                   <Link></Link> 
-                </li>
+                <Link to="login">
+                    <li>
+                        {signout} <span>Logout</span>
+                    </li>
+                </Link>
             </div>
         </NavStyled>
     )
@@ -114,6 +125,10 @@ const NavStyled = styled.nav`
             background: #222260;
             border-radius: 0 10px 10px 0;
         }
+    }
+
+    a{
+        text-decoration: none;
     }
 `
 

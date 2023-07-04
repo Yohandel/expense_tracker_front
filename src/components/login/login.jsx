@@ -2,7 +2,7 @@ import React from 'react'
 import { MainLayout } from '../../styles/Layout'
 import Form from '../Forms/Form'
 
-const login = () => {
+const Login = () => {
   return (
     <MainLayout>
         <Form/>
@@ -10,4 +10,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login

@@ -9,6 +9,8 @@ import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Incomes from './components/Incomes/Incomes.jsx';
 import Expenses from './components/Expenses/Expenses.jsx';
 import { useGlobalContext } from './context/globalContext.jsx';
+import { Route, Routes } from "react-router-dom";
+import Login from './components/login/login.jsx';
 
 
 export function App() {
@@ -39,9 +41,14 @@ export function App() {
     <AppStyled bg={bg} >
       {orbMemo}
       <MainLayout>
-        <Navigations active={active} setActive={setactive} />
+        <Navigations />
         <main>
-          {displayData()}
+          <Routes>
+            <Route path='login' element={<Login />} />
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='incomes' element={<Incomes />} />
+            <Route path='expenses' element={<Expenses />} />
+          </Routes>
         </main>
       </MainLayout>
     </AppStyled>
