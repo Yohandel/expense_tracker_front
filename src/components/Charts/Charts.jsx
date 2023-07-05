@@ -52,6 +52,13 @@ const Charts = () => {
                 return dateFormat(date)
             })
         }
+
+        else{
+            return labels = incomes.map((income) => {
+                const { date } = income
+                return dateFormat(date)
+            })
+        }
     }
 
 

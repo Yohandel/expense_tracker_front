@@ -2,12 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import avatar from '../../Images/avatar.png';
 import { menuItems } from '../../utils/menuItems';
-import { home, signout } from '../../utils/Icons';
-import { Link } from "react-router-dom";
-import Login from '../login/login';
+import { signout } from '../../utils/Icons';
+import { Link, NavLink } from "react-router-dom";
+import { useGlobalContext } from '../../context/globalContext';
 
 
-const Navigations = ({ active, setActive }) => {
+const Navigations = () => {
+
+    const {logOut} = useGlobalContext()
 
     return (
         <NavStyled>
@@ -22,28 +24,23 @@ const Navigations = ({ active, setActive }) => {
             <ul className="menu-items">
                 {menuItems.map((item) => {
                     return (
-                        <Link to={item.linkf}>
-                            <li
-                                key={item.id}
-
-                                className={active === item.id ? 'active' : ''}
+                        <NavLink to={item.linkf}>
+                            <li key={item.id}
                             >
                                 {item.icon}
                                 <span>{item.title}</span>
                             </li>
-                        </Link>
+                        </NavLink>
                     )
                 })}
 
-
-
             </ul>
             <div className="bottom-nav">
-                <Link to="login">
-                    <li>
+                <NavLink to="login">
+                    <li onClick={() =>logOut()} >
                         {signout} <span>Logout</span>
                     </li>
-                </Link>
+                </NavLink>
             </div>
         </NavStyled>
     )
@@ -109,22 +106,14 @@ const NavStyled = styled.nav`
     }
 
     .active{
-        color: rgba(34, 34, 96, 1);
+        color: #1c1c55 !important;
+        font-size: larger;
 
         i{
-            color: rgba(34, 34, 96, 1); 
+            color: #1c1c55 !important; 
         }
 
-        &::before{
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: #222260;
-            border-radius: 0 10px 10px 0;
-        }
+
     }
 
     a{

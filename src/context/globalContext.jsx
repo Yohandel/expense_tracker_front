@@ -9,6 +9,8 @@ export const GlobalProvider = ({ children }) => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
+    const [userInfo, setUserInfo] = useState(null)
+    const [token, setToken] = useState(null)
     const [error, setError] = useState(null)
 
     const addIncome = async (income) => {
@@ -93,13 +95,24 @@ export const GlobalProvider = ({ children }) => {
         return history.slice(0, 3)
     }
 
+    const logIn = async (credentials) => {
+        const res = await axios.post(`${BASE_URL}/login`, credentials).then((result) => {
+            setUserInfo(result.data)
+            setToken(result.data.token)
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const logOut = async () => {
+        setUserInfo(null)
+    }
+
 
     return (
         <GlobalContext.Provider value={{
             addIncome,
             getIncomes,
-            incomes,
-            expenses,
             deleteIncome,
             totalIncome,
             getExpenses,
@@ -108,6 +121,13 @@ export const GlobalProvider = ({ children }) => {
             totalExpense,
             totalBalance,
             transactionHistory,
+            logIn,
+            logOut,
+
+            incomes,
+            expenses,
+            userInfo,
+            token
         }}>
             {children}
         </GlobalContext.Provider>

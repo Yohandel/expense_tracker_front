@@ -1,41 +1,34 @@
-import { useMemo, useState } from 'preact/hooks'
-import GlobalStyle from './styles/GlobalStyles.js';
+import { useMemo } from 'preact/hooks'
 import styled from 'styled-components';
 import bg from './Images/bg.png';
-import { MainLayout } from './styles/Layout.js';
-import { Orb } from './components/Orb/Orb.js';
-import Navigations from './components/Navigation/Navigations.js';
+import { MainLayout } from './styles/Layout.jsx';
+import { Orb } from './components/Orb/Orb.jsx';
+import Navigations from './components/Navigation/Navigations.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Incomes from './components/Incomes/Incomes.jsx';
 import Expenses from './components/Expenses/Expenses.jsx';
-import { useGlobalContext } from './context/globalContext.jsx';
-import { Route, Routes } from "react-router-dom";
+
+import { Navigate, Route, Routes } from "react-router-dom";
 import Login from './components/login/login.jsx';
+import { useGlobalContext } from './context/globalContext';
 
 
 export function App() {
-  const [active, setactive] = useState(1)
+
+
+  const ProtectedRoute = ({ children }) => {
+    const { token } = useGlobalContext()
+    if (!token) {
+      return <Navigate to='/login' />
+    }
+    return children
+  }
 
 
   const orbMemo = useMemo(() => {
     return <Orb />
   }, [])
 
-  const displayData = () => {
-    switch (active) {
-      case 1:
-        return <Dashboard />
-      case 2:
-        return <Dashboard />
-      case 3:
-        return <Incomes />
-      case 4:
-        return <Expenses />
-
-      default:
-        return <Dashboard />
-    }
-  }
 
   return (
     <AppStyled bg={bg} >
@@ -45,9 +38,10 @@ export function App() {
         <main>
           <Routes>
             <Route path='login' element={<Login />} />
-            <Route path='dashboard' element={<Dashboard />} />
-            <Route path='incomes' element={<Incomes />} />
-            <Route path='expenses' element={<Expenses />} />
+            <Route path='dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path='incomes' element={<ProtectedRoute><Incomes /></ProtectedRoute>} />
+            <Route path='expenses' element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
+            <Route path='/' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           </Routes>
         </main>
       </MainLayout>

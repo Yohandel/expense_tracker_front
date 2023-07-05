@@ -5,7 +5,7 @@ export const menuItems = [
         id: 1,
         title: 'Home',
         icon: home,
-        linkf: '/dashboard'
+        linkf: '/'
     },
     {
         id: 2,
