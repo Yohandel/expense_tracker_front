@@ -103,9 +103,10 @@ export const GlobalProvider = ({ children }) => {
             console.log(err);
         });
     }
-
+    
     const logOut = async () => {
         setUserInfo(null)
+        setToken(null)
     }
 
 

@@ -83,15 +83,7 @@ const ExpenseItem = ({
                         <p>{comment} {description}</p>
                     </div>
                     <div className="btn-con">
-                        <Button
-                            icon={trash}
-                            bPad={'1rem'}
-                            bg={'var(--primary-color)'}
-                            color={'#fff'}
-                            iColor={'#fff'}
-                            hcolor={'var(--colorg- reen)'}
-                            onClick={() => deleteItem(id)}
-                        />
+                    <i className="fa-solid fa-trash"  onClick={() => deleteItem(id)}></i>
                     </div>
                 </div>
             </div>
@@ -162,6 +154,21 @@ const ExpenseItemStyled = styled.div`
                     opacity: 0.8;
                 }
             }
+        }
+
+        .btn-con{
+            height: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            cursor: pointer;
+        }
+
+        .fa-trash{
+        font-size: x-large;
+        margin-left: 1rem;
+        align-self: center;
         }
     }
 `;
