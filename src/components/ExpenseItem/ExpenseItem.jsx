@@ -10,6 +10,10 @@ import {
 } from '../../utils/Icons'
 import Button from '../Button/Button'
 import { dateFormat } from '../../utils/dateFormat'
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from 'react-tooltip'
+import { SweetAlert } from '../../utils/SweetAlert'
+
 
 const ExpenseItem = ({
     id,
@@ -23,7 +27,7 @@ const ExpenseItem = ({
     type
 }) => {
 
-    
+
     const categoryIcon = () => {
         switch (category) {
             case 'salary': return money;
@@ -69,27 +73,53 @@ const ExpenseItem = ({
         }
     }
 
+
+    
+const sweet = new SweetAlert()
+
+const deleteExpense = (expenseId) => {
+    sweet.AlertConfirm('Delete Expense', 'Are you sure you want to delete this item?').then((result) => {
+        console.log(result);
+        if (result) {
+            deleteItem(expenseId)
+        }
+    }).catch((err) => {
+        
+    });
+}
+
     return (
         <ExpenseItemStyled indicator={indicatorColor}>
             <div className="icon">
-            {type === 'expense' ? expenseCatIcon() : categoryIcon()}    
+                {type === 'expense' ? expenseCatIcon() : categoryIcon()}
             </div>
             <div className="content">
                 <h5>{title}</h5>
                 <div className="inner-content">
-                    <div className="text">
+                    <div className="text ">
                         <p>{dollar} {amount}</p>
                         <p>{calender} {dateFormat(date)}</p>
                         <p>{comment} {description}</p>
+
+
+
                     </div>
-                    <div className="btn-con">
-                    <i className="fa-solid fa-trash"  onClick={() => deleteItem(id)}></i>
-                    </div>
+                    <a onClick={() => deleteExpense(id)}>
+                        <i className="fa-solid fa-trash" data-tooltip-id='btn-delete' ></i>
+                    </a>
                 </div>
             </div>
+            <Tooltip
+                id="btn-delete"
+                place="top"
+                variant="error"
+                content="Delete"
+            />
         </ExpenseItemStyled>
     )
 }
+
+
 
 const ExpenseItemStyled = styled.div`
     background: #FCF6F9;
@@ -141,11 +171,11 @@ const ExpenseItemStyled = styled.div`
         .inner-content{
             display: flex;
             justify-content: space-between;
-            align-items: center;
+         
             .text{
                 display: flex;
-                align-items: center;
-                gap: 1.5rem;
+                gap:1.5rem;
+               
                 p{
                     display: flex;
                     align-items: center;
@@ -156,17 +186,8 @@ const ExpenseItemStyled = styled.div`
             }
         }
 
-        .btn-con{
-            height: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-start;
-            cursor: pointer;
-        }
-
         .fa-trash{
-        font-size: x-large;
+        cursor: pointer;
         margin-left: 1rem;
         align-self: center;
         }

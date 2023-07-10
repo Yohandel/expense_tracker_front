@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from 'react-tooltip'
 import {
     bitcoin, book, calender,
     card, circle, clothing,
@@ -10,6 +12,7 @@ import {
 } from '../../utils/Icons'
 import Button from '../Button/Button'
 import { dateFormat } from '../../utils/dateFormat'
+import { SweetAlert } from '../../utils/SweetAlert';
 
 const IncomeItem = ({
     id,
@@ -45,6 +48,19 @@ const IncomeItem = ({
         }
     }
 
+    const sweet = new SweetAlert()
+
+    const deleteIncome = (expenseId) => {
+        sweet.AlertConfirm('Delete Income', 'Are you sure you want to delete this item?').then((result) => {
+            if (result) {
+                deleteItem(expenseId)
+            }
+        }).catch((err) => {
+            
+        });
+    }
+    
+
 
     return (
         <IncomeItemStyled indicator={indicatorColor}>
@@ -59,25 +75,23 @@ const IncomeItem = ({
                         <p>{calender} {dateFormat(date)}</p>
                         <p>{comment} {description}</p>
                     </div>
-                    <div className="btn-con">
-                        <Button
-                            icon={trash}
-                            bPad={'1rem'}
-                            bg={'var(--primary-color)'}
-                            color={'#fff'}
-                            iColor={'#fff'}
-                            hcolor={'var(--colorg- reen)'}
-                            onClick={() => deleteItem(id)}
-                        />
-                    </div>
+                    <a onClick={() => deleteIncome(id)} >
+                        <i className="fa-solid fa-trash"  data-tooltip-id='btn-delete'></i>
+                    </a>
                 </div>
             </div>
+            <Tooltip
+                id="btn-delete"
+                place="top"
+                variant="error"
+                content="Delete"
+            />
         </IncomeItemStyled>
     )
 }
 
 const IncomeItemStyled = styled.div`
-    background: #FCF6F9;
+     background: #FCF6F9;
     border: 2px solid #FFFFFF;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
     border-radius: 20px;
@@ -126,11 +140,11 @@ const IncomeItemStyled = styled.div`
         .inner-content{
             display: flex;
             justify-content: space-between;
-            align-items: center;
+         
             .text{
                 display: flex;
-                align-items: center;
-                gap: 1.5rem;
+                gap:1.5rem;
+               
                 p{
                     display: flex;
                     align-items: center;
@@ -139,6 +153,12 @@ const IncomeItemStyled = styled.div`
                     opacity: 0.8;
                 }
             }
+        }
+
+        .fa-trash{
+        cursor: pointer;
+        margin-left: 1rem;
+        align-self: center;
         }
     }
 `;

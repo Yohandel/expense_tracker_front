@@ -16,7 +16,9 @@
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.11.0",
     "react-router-dom": "^6.13.0",
-    "styled-components": "^5.3.10"
+    "react-tooltip": "^5.18.0",
+    "styled-components": "^5.3.10",
+    "sweetalert2": "^11.7.12"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",

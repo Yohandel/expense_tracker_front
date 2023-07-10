@@ -51,6 +51,7 @@ const Expenses = () => {
 const ExpensesStyled = styled.div`
 display: flex;
 overflow: hidden;
+
 .total-expense{
     display: flex;
     justify-content: center;
