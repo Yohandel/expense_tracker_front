@@ -99,14 +99,16 @@ export const GlobalProvider = ({ children }) => {
         const res = await axios.post(`${BASE_URL}/login`, credentials).then((result) => {
             setUserInfo(result.data)
             setToken(result.data.token)
+            sessionStorage.setItem('token', result.data.token)
         }).catch((err) => {
             console.log(err);
         });
     }
-    
+
     const logOut = async () => {
         setUserInfo(null)
         setToken(null)
+        sessionStorage.removeItem('token')
     }
 
 

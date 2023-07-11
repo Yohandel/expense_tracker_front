@@ -36,11 +36,11 @@ const Navigations = () => {
 
             </ul>
             <div className="bottom-nav">
-                <NavLink to="login">
+                <a href='/login'>
                     <li onClick={() =>logOut()} >
                         {signout} <span>Logout</span>
                     </li>
-                </NavLink>
+                </a>
             </div>
         </NavStyled>
     )
