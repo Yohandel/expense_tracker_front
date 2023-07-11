@@ -40,7 +40,7 @@ const Login = () => {
           </div>
           <div className="mb-3">
             <label for="exampleInputPassword1" className="form-label">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" value={password}
+            <input type="password" autoComplete='false' className="form-control" id="exampleInputPassword1" value={password}
               name={'password'}
               onChange={handleInput('password')} />
           </div>
