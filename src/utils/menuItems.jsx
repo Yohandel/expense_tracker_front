@@ -9,18 +9,12 @@ export const menuItems = [
     },
     {
         id: 2,
-        title: 'Dashboard',
-        icon: dashboard,
-        linkf: '/dashboard'
-    },
-    {
-        id: 3,
         title: 'Incomes',
         icon: trend,
         linkf: '/incomes'
     },
     {
-        id: 4,
+        id: 3,
         title: 'Expenses',
         icon: expenses,
         linkf: '/expenses'

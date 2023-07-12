@@ -10,13 +10,14 @@ import { useGlobalContext } from '../../context/globalContext';
 const Navigations = () => {
 
     const {logOut} = useGlobalContext()
+    const  userInfo  = JSON.parse(sessionStorage.getItem('userInfo')) 
 
     return (
         <NavStyled>
             <div className="user-con">
                 <img src={avatar} alt="" />
                 <div className="text">
-                    <h2>Mike</h2>
+                    <h2>{userInfo.name} {userInfo.lastName}</h2>
                     <p>Your Money</p>
                 </div>
             </div>

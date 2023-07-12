@@ -9,9 +9,21 @@ export const GlobalProvider = ({ children }) => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
-    const [userInfo, setUserInfo] = useState(null)
-    const [token, setToken] = useState(null)
     const [error, setError] = useState(null)
+
+    const uninterceptedAxiosInstance = axios.create();
+    axios.interceptors.request.use(
+        async (config) => {;
+            const token = sessionStorage.getItem('token')
+            if (token) {
+                config.headers.authorization = `Bearer ${token}`;
+            }
+            return config;
+        },
+        function (error) {
+            return Promise.reject(error);
+        }
+    );
 
     const addIncome = async (income) => {
         const response = await axios.post(`${BASE_URL}/add-income`, income)
@@ -96,19 +108,18 @@ export const GlobalProvider = ({ children }) => {
     }
 
     const logIn = async (credentials) => {
-        const res = await axios.post(`${BASE_URL}/login`, credentials).then((result) => {
-            setUserInfo(result.data)
-            setToken(result.data.token)
+        const res = await uninterceptedAxiosInstance.post(`${BASE_URL}/login`, credentials).then((result) => {
             sessionStorage.setItem('token', result.data.token)
+            sessionStorage.setItem('userInfo',JSON.stringify(result.data.userInfo))
         }).catch((err) => {
             console.log(err);
         });
     }
 
     const logOut = async () => {
-        setUserInfo(null)
-        setToken(null)
+
         sessionStorage.removeItem('token')
+        sessionStorage.removeItem('userInfo')
     }
 
 
@@ -126,11 +137,9 @@ export const GlobalProvider = ({ children }) => {
             transactionHistory,
             logIn,
             logOut,
-
             incomes,
             expenses,
-            userInfo,
-            token
+
         }}>
             {children}
         </GlobalContext.Provider>

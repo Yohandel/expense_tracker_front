@@ -26,10 +26,10 @@ const Home = () => {
                 <Navigations />
                 <main>
                     <Routes>
-                        <Route path='dashboard' element={<Dashboard />} />
                         <Route path='incomes' element={<Incomes />} />
                         <Route path='expenses' element={<Expenses />} />
                         <Route path='/' element={<Dashboard />} />
+                        <Route path='*' element={<Dashboard />} />
                     </Routes>
                 </main>
             </MainLayout>

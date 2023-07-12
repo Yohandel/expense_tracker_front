@@ -77,21 +77,25 @@ const Charts = () => {
     }
 
     const data = {
-        labels: displayLbales(),
+
         datasets: [
             {
                 label: 'Income',
                 data: displayIncomesData(),
                 backgroundColor: '#2e992e',
                 tension: .2,
-                order:1
+                skipNull:true,
+                minBarLength:2,
+                grouped:true
             },
             {
                 label: 'Expense',
                 data: displayExpensesData(),
                 backgroundColor: '#ea2c2c',
                 tension: .2,
-                order:5
+                skipNull:true,
+                minBarLength:2,
+                grouped:true
             },
 
 
