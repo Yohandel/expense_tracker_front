@@ -5,19 +5,19 @@ export const menuItems = [
         id: 1,
         title: 'Home',
         icon: home,
-        linkf: '/'
+        link: '/'
     },
     {
         id: 2,
         title: 'Incomes',
         icon: trend,
-        linkf: '/incomes'
+        link: '/incomes'
     },
     {
         id: 3,
         title: 'Expenses',
         icon: expenses,
-        linkf: '/expenses'
+        link: '/expenses'
     },
    
 ]

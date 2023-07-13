@@ -25,7 +25,7 @@ const Navigations = () => {
             <ul className="menu-items">
                 {menuItems.map((item) => {
                     return (
-                        <NavLink to={item.linkf}>
+                        <NavLink to={item.link}>
                             <li key={item.id}
                             >
                                 {item.icon}

@@ -69,14 +69,11 @@ const Form = () => {
             </div>
             <div className="input-control">
                 <label>Date</label>
-                <DatePicker
-                    id='date'
-                    placeholderText='Enter a Date'
-                    selected={date}
-                    dateFormat='dd/MM/yyyy'
-                    onChange={(date) => {
-                        setInputState({ ...inputState, date: date })
-                    }}
+                <input
+                    type="date"
+                    value={date}
+                    name={'date'}
+                    onChange={handleInput('date')}
                 />
             </div>
             <div className="selects input-control">

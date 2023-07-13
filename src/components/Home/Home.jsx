@@ -28,7 +28,7 @@ const Home = () => {
                     <Routes>
                         <Route path='incomes' element={<Incomes />} />
                         <Route path='expenses' element={<Expenses />} />
-                        <Route path='/' element={<Dashboard />} />
+                        <Route exact path='/' element={<Dashboard />} />
                         <Route path='*' element={<Dashboard />} />
                     </Routes>
                 </main>
