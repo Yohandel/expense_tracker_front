@@ -29,7 +29,7 @@ const Home = () => {
                         <Route path='incomes' element={<Incomes />} />
                         <Route path='expenses' element={<Expenses />} />
                         <Route exact path='/' element={<Dashboard />} />
-                        <Route path='*' element={<Dashboard />} />
+                        <Route path='/*' element={<Dashboard />} />
                     </Routes>
                 </main>
             </MainLayout>

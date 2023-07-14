@@ -9,7 +9,7 @@ export const GlobalProvider = ({ children }) => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
-    const [error, setError] = useState(null)
+    const [token, setToken] = useState(sessionStorage.getItem('token'))
 
     const uninterceptedAxiosInstance = axios.create();
     axios.interceptors.request.use(
@@ -111,15 +111,16 @@ export const GlobalProvider = ({ children }) => {
         const res = await uninterceptedAxiosInstance.post(`${BASE_URL}/login`, credentials).then((result) => {
             sessionStorage.setItem('token', result.data.token)
             sessionStorage.setItem('userInfo',JSON.stringify(result.data.userInfo))
+            setToken(sessionStorage.getItem('token'))
         }).catch((err) => {
             console.log(err);
         });
     }
 
     const logOut = async () => {
-
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('userInfo')
+        setToken(null)
     }
 
 
@@ -139,6 +140,7 @@ export const GlobalProvider = ({ children }) => {
             logOut,
             incomes,
             expenses,
+            token
 
         }}>
             {children}

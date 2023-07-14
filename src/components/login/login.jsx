@@ -49,7 +49,7 @@ const Login = () => {
                 onChange={handleInput('password')} />
             </div>
             <div className="mb-4">
-              <Link type="submit" to='/' className="btn btn-lg btn-outline-success fw-semibold w-100" onClick={() => handleLogin()}>
+              <Link  to='/' className="btn btn-lg btn-outline-success fw-semibold w-100" onClick={() => handleLogin()}>
                 Login
               </Link>
               <div className="mt-4">
