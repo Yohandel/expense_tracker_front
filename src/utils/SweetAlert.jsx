@@ -1,5 +1,19 @@
 import Swal from 'sweetalert2';
 export class SweetAlert {
+    async Alert(
+        Title,
+        Text,
+        Timer,
+        TypeSuccessErrorOrWarning) {
+        const a = await Swal.fire({
+            title: Title,
+            text: Text,
+            icon: TypeSuccessErrorOrWarning,
+            timer:Timer
+
+        });
+        return a
+    }
     async AlertConfirm(
         Title,
         Text,

@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import { SweetAlert } from '../../utils/SweetAlert';
 
 const Form = () => {
     const { addIncome } = useGlobalContext()
@@ -19,8 +20,10 @@ const Form = () => {
 
     const { title, amount, date, category, description } = inputState
 
+    const sweet = new SweetAlert()
     const handleInput = name => e => {
         setInputState({ ...inputState, [name]: e.target.value })
+        
     }
 
     const handleSubmit = e => {
@@ -33,6 +36,7 @@ const Form = () => {
             category: '',
             description: ''
         })
+        sweet.Alert('Income Created', 'Income Created Successfully',2500, 'success')
     }
 
     return (

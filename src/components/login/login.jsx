@@ -1,6 +1,4 @@
 import React from 'react'
-import { MainLayout } from '../../styles/Layout'
-import Form from '../Forms/Form'
 import { useGlobalContext } from '../../context/globalContext'
 import { Link, Navigate } from 'react-router-dom'
 import './login.css'
@@ -54,8 +52,15 @@ const Login = () => {
               </Link>
               <div className="mt-4">
                 <div className="w-100 text-center ">
-                  <a className="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block " href="op_auth_reminder2.html" routerLink="/auth/forgotPassword">
-                    Olvidé mi Contraseña
+                  <Link to='/register' className="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block">
+                    Register
+                  </Link>
+                </div>
+              </div>
+              <div className="mt-4">
+                <div className="w-100 text-center ">
+                  <a className="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block">
+                    Forgot My Password
                   </a>
                 </div>
               </div>
