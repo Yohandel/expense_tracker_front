@@ -2,15 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import avatar from '../../Images/avatar.png';
 import { menuItems } from '../../utils/menuItems';
-import { signout } from '../../utils/Icons';
+import { signout, users } from '../../utils/Icons';
 import { Link, NavLink } from "react-router-dom";
 import { useGlobalContext } from '../../context/globalContext';
 
 
 const Navigations = () => {
 
-    const {logOut} = useGlobalContext()
-    const  userInfo  = JSON.parse(sessionStorage.getItem('userInfo')) 
+    const { logOut } = useGlobalContext()
+    const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
 
     return (
         <NavStyled>
@@ -23,7 +23,9 @@ const Navigations = () => {
             </div>
 
             <ul className="menu-items">
+             
                 {menuItems.map((item) => {
+                    if (!item) return
                     return (
                         <NavLink to={item.link}>
                             <li key={item.id}
@@ -38,7 +40,7 @@ const Navigations = () => {
             </ul>
             <div className="bottom-nav">
                 <NavLink to='/login'>
-                    <li onClick={() =>logOut()} >
+                    <li onClick={() => logOut()} >
                         {signout} <span>Logout</span>
                     </li>
                 </NavLink>

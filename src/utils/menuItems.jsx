@@ -1,6 +1,9 @@
 import { dashboard, expenses, home, transactions, trend, users } from "./Icons";
 
-export const menuItems = [
+const  userInfo  = JSON.parse(sessionStorage.getItem('userInfo')) 
+const {type} = userInfo
+
+ export const menuItems = [
     {
         id: 1,
         title: 'Home',
@@ -19,11 +22,11 @@ export const menuItems = [
         icon: expenses,
         link: '/expenses'
     },
-    {
+    type  === "admin" ?{
         id: 4,
         title: 'Users',
         icon: users,
         link: '/users'
-    },
+    } : null,
    
 ]

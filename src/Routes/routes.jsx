@@ -18,9 +18,9 @@ import UsersList from "../components/Users/UsersList"
 const Auth = () => {
     return (
         <>
-          
             <Routes>
                 <Route path='login' element={<Login />} />
+                <Route path='/*' element={<Login />} />
                 <Route path='register' element={<Register />} />
             </Routes>
         </>
