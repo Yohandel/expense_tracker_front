@@ -1,6 +1,6 @@
 .total-users {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background: #FCF6F9;
     border: 2px solid #FFFFFF;
@@ -93,4 +93,7 @@ p {
 .users{
     height: 70vh;
     overflow-y: auto;
+}
+.add-btn{
+    cursor: pointer;
 }

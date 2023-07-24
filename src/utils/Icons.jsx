@@ -31,5 +31,6 @@ export const home = <i class="fa-sharp fa-solid fa-house"></i>
 export const login = <i class="fa-thin fa-right-to-bracket"></i>
 export const users = <i class="fa-solid fa-users"></i>
 export const user = <i class="fa-solid fa-user"></i>
+export const addUser = <i class="fa-solid fa-user-plus"></i>
 export const userAdmin = <i class="fa-solid fa-user-tie"></i>
 export const envelope = <i class="fa-solid fa-envelope"></i>

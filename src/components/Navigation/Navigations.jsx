@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import avatar from '../../Images/avatar.png';
-import { menuItems } from '../../utils/menuItems';
+import  MenuItems  from '../../utils/menuItems';
 import { signout, users } from '../../utils/Icons';
 import { Link, NavLink } from "react-router-dom";
 import { useGlobalContext } from '../../context/globalContext';
@@ -24,18 +24,7 @@ const Navigations = () => {
 
             <ul className="menu-items">
              
-                {menuItems.map((item) => {
-                    if (!item) return
-                    return (
-                        <NavLink to={item.link}>
-                            <li key={item.id}
-                            >
-                                {item.icon}
-                                <span>{item.title}</span>
-                            </li>
-                        </NavLink>
-                    )
-                })}
+                <MenuItems/>
 
             </ul>
             <div className="bottom-nav">
