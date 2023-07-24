@@ -14,7 +14,6 @@ export const bitcoin = <i className="fa-brands fa-bitcoin"></i>
 export const piggy = <i className="fa-solid fa-piggy-bank"></i>
 export const yt = <i className="fa-brands fa-youtube"></i>
 export const card = <i className="fa-brands fa-cc-visa"></i>
-export const users = <i className="fa-solid fa-users-between-lines"></i>
 export const dollar = <i className="fa-solid fa-dollar-sign"></i>
 export const calender = <i className="fa-solid fa-calendar"></i>
 export const comment = <i className="fa-solid fa-comment"></i>
@@ -28,3 +27,10 @@ export const food = <i className="fa-solid fa-bowl-food"></i>
 export const medical = <i className="fa-solid fa-briefcase-medical"></i>
 export const tv = <i className="fa-solid fa-tv"></i>
 export const circle = <i className="fa-solid fa-circle-dot"></i>
+export const home = <i class="fa-sharp fa-solid fa-house"></i>
+export const login = <i class="fa-thin fa-right-to-bracket"></i>
+export const users = <i class="fa-solid fa-users"></i>
+export const user = <i class="fa-solid fa-user"></i>
+export const addUser = <i class="fa-solid fa-user-plus"></i>
+export const userAdmin = <i class="fa-solid fa-user-tie"></i>
+export const envelope = <i class="fa-solid fa-envelope"></i>

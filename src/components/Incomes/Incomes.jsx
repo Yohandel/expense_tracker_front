@@ -22,7 +22,7 @@ const Incomes = () => {
                 <h1>Incomes</h1>
                 <h2 className="total-income">Total Incomes: <span>{dollar}{totalIncome()}</span> </h2>
                 <div className="income-content">
-                    <div className="form-container">
+                    <div >
                         <Form />
                     </div>
                     <div className="incomes">
@@ -51,6 +51,7 @@ const Incomes = () => {
 const IncomesStyled = styled.div`
     display: flex;
     overflow: hidden;
+
     .total-income{
         display: flex;
         justify-content: center;

@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import { SweetAlert } from '../../utils/SweetAlert';
 
 const Form = () => {
     const { addIncome } = useGlobalContext()
@@ -19,8 +20,10 @@ const Form = () => {
 
     const { title, amount, date, category, description } = inputState
 
+    const sweet = new SweetAlert()
     const handleInput = name => e => {
         setInputState({ ...inputState, [name]: e.target.value })
+        
     }
 
     const handleSubmit = e => {
@@ -33,6 +36,7 @@ const Form = () => {
             category: '',
             description: ''
         })
+        sweet.Alert('Income Created', 'Income Created Successfully',2500, 'success')
     }
 
     return (
@@ -69,14 +73,11 @@ const Form = () => {
             </div>
             <div className="input-control">
                 <label>Date</label>
-                <DatePicker
-                    id='date'
-                    placeholderText='Enter a Date'
-                    selected={date}
-                    dateFormat='dd/MM/yyyy'
-                    onChange={(date) => {
-                        setInputState({ ...inputState, date: date })
-                    }}
+                <input
+                    type="date"
+                    value={date}
+                    name={'date'}
+                    onChange={handleInput('date')}
                 />
             </div>
             <div className="selects input-control">
@@ -109,7 +110,7 @@ const Form = () => {
 const FormStyled = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     input, textarea, select{
         font-family: inherit;
         font-size: inherit;

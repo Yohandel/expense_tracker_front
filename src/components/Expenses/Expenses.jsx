@@ -22,7 +22,7 @@ const Expenses = () => {
                 <h1>Expenses</h1>
                 <h2 className="total-expense">Total Expenses: <span>-{dollar}{totalExpense()}</span> </h2>
                 <div className="expense-content">
-                    <div className="form-container">
+                    <div >
                         <ExpenseForm />
                     </div>
                     <div className="expenses">
@@ -51,6 +51,7 @@ const Expenses = () => {
 const ExpensesStyled = styled.div`
 display: flex;
 overflow: hidden;
+
 .total-expense{
     display: flex;
     justify-content: center;

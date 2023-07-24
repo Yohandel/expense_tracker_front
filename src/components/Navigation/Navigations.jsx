@@ -1,38 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
 import avatar from '../../Images/avatar.png';
-import { menuItems } from '../../utils/menuItems';
-import { signout } from '../../utils/Icons';
-import { useState } from 'preact/hooks';
+import  MenuItems  from '../../utils/menuItems';
+import { signout, users } from '../../utils/Icons';
+import { Link, NavLink } from "react-router-dom";
+import { useGlobalContext } from '../../context/globalContext';
 
-const Navigations = ({ active, setActive }) => {
+
+const Navigations = () => {
+
+    const { logOut } = useGlobalContext()
+    const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
 
     return (
         <NavStyled>
             <div className="user-con">
                 <img src={avatar} alt="" />
                 <div className="text">
-                    <h2>Mike</h2>
+                    <h2>{userInfo.name} {userInfo.lastName}</h2>
                     <p>Your Money</p>
                 </div>
             </div>
 
             <ul className="menu-items">
-                {menuItems.map((item) => {
-                    return <li
-                        key={item.id}
-                        onClick={() => setActive(item.id)}
-                        className={active === item.id ? 'active' : ''}
-                    >
-                        {item.icon}
-                        <span>{item.title}</span>
-                    </li>
-                })}
+             
+                <MenuItems/>
+
             </ul>
             <div className="bottom-nav">
-                <li>
-                    {signout} Sign Out
-                </li>
+                <NavLink to='/login'>
+                    <li onClick={() => logOut()} >
+                        {signout} <span>Logout</span>
+                    </li>
+                </NavLink>
             </div>
         </NavStyled>
     )
@@ -98,22 +98,18 @@ const NavStyled = styled.nav`
     }
 
     .active{
-        color: rgba(34, 34, 96, 1);
+        color: #1c1c55 !important;
+        font-size: larger;
 
         i{
-            color: rgba(34, 34, 96, 1); 
+            color: #1c1c55 !important; 
         }
 
-        &::before{
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: #222260;
-            border-radius: 0 10px 10px 0;
-        }
+
+    }
+
+    a{
+        text-decoration: none;
     }
 `
 
