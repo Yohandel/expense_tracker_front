@@ -29,6 +29,7 @@ ChartJs.register(
     Legend
 )
 
+
 const Charts = () => {
 
     const { getIncomes, getExpenses, incomes, expenses } = useGlobalContext()
