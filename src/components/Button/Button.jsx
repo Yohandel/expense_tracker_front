@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Button = ({name, icon, onClick, bg, bPad, color, bRad}) => {
+const Button = ({ name, icon, onClick, bg, bPad, color, bRad, disabled, type }) => {
   return (
     <ButtonStyled style={{
-        background:bg,
-        padding:bPad,
-        borderRadius: bRad,
-        color: color
-    }} onClick={onClick}>
-        {icon}
-        {name}
+      background: bg,
+      padding: bPad,
+      borderRadius: bRad,
+      color: color
+    }} onClick={onClick}
+      disabled={disabled}
+      type={type}>
+      {icon}
+      {name}
     </ButtonStyled>
   )
 }

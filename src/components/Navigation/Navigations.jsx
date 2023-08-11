@@ -27,13 +27,11 @@ const Navigations = () => {
                 <MenuItems/>
 
             </ul>
-            <div className="bottom-nav">
-                <NavLink to='/login'>
+                <NavLink>
                     <li onClick={() => logOut()} >
                         {signout} <span>Logout</span>
                     </li>
                 </NavLink>
-            </div>
         </NavStyled>
     )
 }
