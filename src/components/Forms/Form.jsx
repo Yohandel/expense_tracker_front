@@ -7,49 +7,29 @@ import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
 import { SweetAlert } from '../../utils/SweetAlert';
-import { Form as formikForm, ErrorMessage, Field, Formik } from 'formik'
+import { Form as FormikForm, ErrorMessage, Field, Formik } from 'formik'
 import * as Yup from 'yup'
+import './Form.css'
 
 const Form = () => {
     const { addIncome } = useGlobalContext()
-    const [inputState, setInputState] = useState({
-        title: '',
-        amount: '',
-        date: '',
-        category: '',
-        description: ''
-    })
 
-    const { title, amount, date, category, description } = inputState
-
+    const initialValues = { title: '', amount: '', date: '', category: '', description: '' }
     const sweet = new SweetAlert()
-    const handleInput = name => e => {
-        setInputState({ ...inputState, [name]: e.target.value })
-
-    }
-
-    const handleSubmit = values => {
-        e.preventDefault()
-        console.log(values);
-        // addIncome(inputState)
-        // setInputState({
-        //     title: '',
-        //     amount: '',
-        //     date: '',
-        //     category: '',
-        //     description: ''
-        // })
-        // sweet.Alert('Income Created', 'Income Created Successfully', 2500, 'success')
+    const handleSubmit = (values, actions) => {
+        addIncome(values)
+        actions.resetForm();
+        sweet.Alert('Income Created', 'Income Created Successfully', 2500, 'success')
     }
 
     return (
         <Formik
-            initialValues={inputState}
+            initialValues={initialValues}
             validationSchema={yupValidation}
             onSubmit={handleSubmit}
         >
-            {({ isSubmitting }) => (
-                <FormStyled >
+            {({ isSubmitting, isValid }) => (
+                <FormikForm className='incomesForm' >
                     <div className="input-control">
                         <label>Title</label>
                         <Field
@@ -101,13 +81,15 @@ const Form = () => {
                             <option value="bank">Bank Transfer</option>
                             <option value="youtube">Youtube</option>
                             <option value="other">Other</option>
+                        
                         </Field>
                     </div>
                     <ErrorMessage name='category' />
+
                     <div className="submit-btn">
-                        <Button
+                    <Button
                             type={"submit"}
-                            disabled={isSubmitting}
+                            disabled={!isValid || isSubmitting}
                             name={'Add Income'}
                             icon={plus}
                             bPad={'.8rem 1.6rem'}
@@ -116,7 +98,8 @@ const Form = () => {
                             color={'#fff'}
                         />
                     </div>
-                </FormStyled>
+
+                </FormikForm>
             )}
         </Formik>
     )
@@ -129,50 +112,5 @@ const yupValidation = Yup.object({
     category: Yup.string().required("This field is required"),
     description: Yup.string().required("This field is required")
 })
-
-const FormStyled = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    input, textarea, select{
-        font-family: inherit;
-        font-size: inherit;
-        outline: none;
-        border: none;
-        padding: .5rem 1rem;
-        border-radius: 5px;
-        border: 2px solid #fff;
-        background: transparent;
-        resize: none;
-        box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-        color: rgba(34, 34, 96, 0.9);
-        &::placeholder{
-            color: rgba(34, 34, 96, 0.4);
-        }
-    }
-    .input-control{
-        input{
-            width: 100%;
-        }
-    }
-    .selects{
-        display: flex;
-        justify-content: flex-start;
-        select{
-            color: rgba(34, 34, 96, 0.4);
-            &:focus, &:active{
-                color: rgba(34, 34, 96, 1);
-            }
-        }
-    }
-    .submit-btn{
-        button{
-            box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-            &:hover{
-                background: var(--color-green) !important;
-            }
-        }
-    }
-`;
 
 export default Form

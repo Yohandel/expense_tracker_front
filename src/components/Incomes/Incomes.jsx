@@ -76,7 +76,7 @@ const IncomesStyled = styled.div`
         gap: 2rem;
         .incomes{
             flex: 1;
-            height: 65vh;
+            height: 71vh;
             overflow-y: auto;
             
         }
