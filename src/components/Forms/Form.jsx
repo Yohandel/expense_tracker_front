@@ -1,12 +1,9 @@
-import { useState } from 'preact/hooks'
+
 import React from 'react'
-import styled from 'styled-components'
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
-import { SweetAlert } from '../../utils/SweetAlert';
 import { Form as FormikForm, ErrorMessage, Field, Formik } from 'formik'
 import * as Yup from 'yup'
 import './Form.css'
@@ -15,11 +12,12 @@ const Form = () => {
     const { addIncome } = useGlobalContext()
 
     const initialValues = { title: '', amount: '', date: '', category: '', description: '' }
-    const sweet = new SweetAlert()
+
     const handleSubmit = (values, actions) => {
-        addIncome(values)
+        const { amount } = values
+        addIncome({ ...values, amount: parseInt(amount) })
         actions.resetForm();
-        sweet.Alert('Income Created', 'Income Created Successfully', 2500, 'success')
+
     }
 
     return (
@@ -47,9 +45,10 @@ const Form = () => {
                             name='amount'
                             placeholder='Income Amount'
                             id="amount"
-                        />
+                            />
                     </div>
                     <ErrorMessage name='amount' />
+                            <label>Description</label>
                     <div className="input-control">
                         <Field as="textarea"
                             name="description"
@@ -81,13 +80,13 @@ const Form = () => {
                             <option value="bank">Bank Transfer</option>
                             <option value="youtube">Youtube</option>
                             <option value="other">Other</option>
-                        
+
                         </Field>
                     </div>
                     <ErrorMessage name='category' />
 
                     <div className="submit-btn">
-                    <Button
+                        <Button
                             type={"submit"}
                             disabled={!isValid || isSubmitting}
                             name={'Add Income'}
@@ -107,7 +106,6 @@ const Form = () => {
 
 const yupValidation = Yup.object({
     title: Yup.string().required("This field is required"),
-    amount: Yup.number().min(1, "The amount must be more than 0 or a positive number").required("This field is required"),
     date: Yup.date().required("This field is required"),
     category: Yup.string().required("This field is required"),
     description: Yup.string().required("This field is required")

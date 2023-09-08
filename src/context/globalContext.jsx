@@ -2,6 +2,7 @@ import { createContext } from "preact";
 import { useContext, useState, useEffect } from 'preact/hooks'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { SweetAlert } from "../utils/SweetAlert";
 const BASE_URL = 'http://localhost:5000/api/v1';
 
 const GlobalContext = createContext()
@@ -13,13 +14,17 @@ export const GlobalProvider = ({ children }) => {
     const [token, setToken] = useState(sessionStorage.getItem('token'))
     const [userInfo, setUserInfo] = useState(JSON.parse(sessionStorage.getItem('userInfo')))
     const [users, setUsers] = useState([])
-    const [error, setError] = useState("")
+    const [error, setError] = useState(null)
     const navigate = useNavigate();
+    const sweet = new SweetAlert()
 
     useEffect(() => {
+        if (!error) return
         if (error.status === 403) {
             checkRefreshToken()
+            return
         }
+        sweet.Default('Error', error.data.message, 'error')
     }, [error])
 
 
@@ -39,8 +44,10 @@ export const GlobalProvider = ({ children }) => {
         const response = await axios.post(`${BASE_URL}/add-income`, income)
             .catch((err) => {
                 setError(err.response)
+                console.log(err.response);
             })
         setIncomes([response.data.income, ...incomes])
+         
     }
     const getIncomes = async () => {
         const response = await axios.get(`${BASE_URL}/get-incomes`)
